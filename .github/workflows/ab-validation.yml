@@ -1,4 +1,4 @@
-name: Check if PR is linked with an Azure Board Story
+name: ADO PR Check
 
 on: 
   pull_request:
@@ -7,21 +7,18 @@ on:
 jobs:
   run-ab-story-validation:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     permissions:
       issues: write
       pull-requests: write
     steps:
-    - uses: emagers/ab-story-validation-action@main
     - uses: CanarysAutomations/pr-update-work-item-state@master
       env: 
         gh_token : '${{ secrets.GH_TOKEN }}'   
         ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
         ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
         ado_project: '${{ secrets.ADO_PROJECT }}'
-        closedstate: ''
-        gh_repo_owner: ''
-        gh_repo: ''
+        closedstate: 'closed'
+        gh_repo_owner: 'repo-ctrl'
+        gh_repo: 'azure-boards-integration-repo'
         pull_number: '${{github.event.number}}' 
         
