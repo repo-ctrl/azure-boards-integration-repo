@@ -1,0 +1,14 @@
+name: Check if PR is linked with an Azure Board Story
+
+on: 
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  run-ab-story-validation:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: emagers/ab-story-validation-action@main
