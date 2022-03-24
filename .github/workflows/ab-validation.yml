@@ -7,8 +7,11 @@ on:
 jobs:
   run-ab-story-validation:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     permissions:
       issues: write
       pull-requests: write
     steps:
     - uses: emagers/ab-story-validation-action@main
+        
