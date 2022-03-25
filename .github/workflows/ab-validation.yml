@@ -20,5 +20,5 @@ jobs:
           const source = context.payload.pull_request.body;
           //console.log(source)
           const results = source.match(pattern);
-          console.log(results)
+          console.log("Results is "+results)
         
