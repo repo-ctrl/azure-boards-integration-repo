@@ -13,10 +13,12 @@ jobs:
     steps:
     - name: Check if an Azure Boards work item is mentioned in the PR Body
       id: pr-body-extract
-      uses:  begedin/variable-regex-extractor-action@master
+      uses: actions/github-script@v6
       with:
-        pattern: |
-          `/AB\#(\d)+/g`
-    - run: |
-        echo ${{ steps.pr-body-extract.outputs.value }}
+        script: |
+          const pattern = '/AB\#(\d)+/g'
+          const source = github.context.payload.pull_request?.body || '';
+          console.log(source)
+          const results = source.match(pattern) || [];
+          console.log(results)
         
