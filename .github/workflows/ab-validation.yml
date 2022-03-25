@@ -16,9 +16,9 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const pattern = '/AB\#(\d)+/g'
+          //const pattern = '/AB\#(\d)+/g'
           const source = context.payload.pull_request.body;
           //console.log(source)
-          const results = source.match(pattern);
+          const results = source.match(/AB\#(\d)+/g);
           console.log("Results is "+results)
         
