@@ -16,9 +16,10 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          //const pattern = '/AB\#(\d)+/g'
-          const source = context.payload.pull_request.body;
-          //console.log(source)
-          const results = source.match(/AB\#(\d)+/g);
-          console.log("Results is "+results)
+          const prBody = context.payload.pull_request.body;
+          const adoItem = source.match(/AB\#(\d)+/g);
+          return adoItem[0]
+        result-encoding: string
+    - name: Show result
+      run: echo "${{steps.pr-body-extract.outputs.result}}"
         
