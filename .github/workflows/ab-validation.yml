@@ -18,8 +18,8 @@ jobs:
         script: |
           const pattern = '/AB\#(\d)+/g'
           //const source = github.context.payload.pull_request?.body || '';
-          source = context.payload;
+          source = context.pull_request.body;
           console.log(source)
-          const results = source.match(pattern) || [];
-          console.log(results)
+          //const results = source.match(pattern) || [];
+          //console.log(results)
         
