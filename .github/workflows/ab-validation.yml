@@ -20,10 +20,19 @@ jobs:
           const adoItem = prBody.match(/AB\#(\d)+/g);
           return adoItem[0]
         result-encoding: string
+
     - name: Show result
       run: echo "${{steps.pr-body-extract.outputs.result}}"
+
     - name: Azure Login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get the Boards Work Item
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az boards work-item show --organization https://dev.azure.com/repo-ctrl --id 1
         
