@@ -28,6 +28,10 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Azure DevOps Login
+      run: |
+        echo ${{secrets.ADO_PERSONAL_ACCESS_TOKEN}} | az devops login --organization https://dev.azure.com/repo-ctrl
 
     - name: Get the Boards Work Item
       uses: azure/CLI@v1
