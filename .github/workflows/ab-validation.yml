@@ -17,7 +17,8 @@ jobs:
       with:
         script: |
           const pattern = '/AB\#(\d)+/g'
-          const source = github.context.payload.pull_request?.body || '';
+          //const source = github.context.payload.pull_request?.body || '';
+          source = github.context.payload;
           console.log(source)
           const results = source.match(pattern) || [];
           console.log(results)
