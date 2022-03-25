@@ -17,7 +17,6 @@ jobs:
       with:
         pattern: |
           `/AB\#(\d)+/g`
-    - if: ${{ steps.pr-body-extract.outputs.value }}
-      run: |
+    - run: |
         echo ${{ steps.pr-body-extract.outputs.value }}
         
