@@ -18,7 +18,7 @@ jobs:
         script: |
           const pattern = '/AB\#(\d)+/g'
           const source = context.payload.pull_request.body;
-          console.log(source)
-          const results = source.match(pattern) || [];
+          //console.log(source)
+          const results = source.match(pattern);
           console.log(results)
         
