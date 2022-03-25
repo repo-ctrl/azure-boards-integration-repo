@@ -11,17 +11,9 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-    - uses: MarcinGadomski94/pr-update-work-item-state@master
-      env: 
-        gh_token : '${{ secrets.GH_TOKEN }}'   
-        ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
-        ado_organization: '${{ secrets.ADO_ORGANIZATION }}'
-        ado_project: '${{ secrets.ADO_PROJECT }}'
-        closedstate: 'Done'
-        propenstate: 'Ready'
-        inprogressstate: 'In Progress' 
-        gh_repo_owner: 'repo-ctrl'
-        gh_repo: 'azure-boards-integration-repo'
-        pull_number: '${{github.event.number}}' 
-        branch_name: '${{ github.ref }}'
+    - name: Check if an Azure Boards work item is mentioned in the PR Body
+      uses: actions/variable-regex-extractor-action@v1.1
+      with:
+        pattern: |
+          `/AB\#(\d)+/g`
         
