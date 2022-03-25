@@ -22,4 +22,8 @@ jobs:
         result-encoding: string
     - name: Show result
       run: echo "${{steps.pr-body-extract.outputs.result}}"
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
         
